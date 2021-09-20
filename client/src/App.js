@@ -6,6 +6,7 @@ import Videogame from './components/Videogame'
 import CreateGame from './components/CreateGame'
 import Intro from './components/Intro'
 import About from './components/About'
+import GameCreated from './components/GameCreated';
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
     <Route exact path="/home" component={Home} />
     <Route exact path="/videogames/:id" component={Videogame} />
     <Route exact path="/createyourgame" component={CreateGame} />
+    <Route exact path="/gamecreated" component={GameCreated} />
     <Route exact path='/' component={Intro} />
+
   </>
   );
 }

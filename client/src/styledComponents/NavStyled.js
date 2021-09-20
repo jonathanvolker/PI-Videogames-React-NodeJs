@@ -1,6 +1,6 @@
 import styled from "styled-components";
 const NavStyled=styled.div`
- background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(126,36,236,1) 41%, rgba(111,91,128,1) 100%);
+    background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(126,36,236,1) 41%, rgba(111,91,128,1) 100%);
     color: white;
     padding: 2rem 0;
     position: fixed;
@@ -11,6 +11,12 @@ const NavStyled=styled.div`
         font-weight: bold;
         color: white;
         text-decoration: none;
+        
+    }
+    .logo-nav{
+        width: 50px;
+        height: 50px;
+        margin-left: 2rem;
     }
     .logo-nav-container{
         display: flex;
@@ -20,7 +26,7 @@ const NavStyled=styled.div`
         .logo {
             letter-spacing: 15px;
             font-size: 1.2em;
-            margin-left: 4rem;
+            margin-right: 26rem;
         }
         .navigation ul {
             margin: 0;

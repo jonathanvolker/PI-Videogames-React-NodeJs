@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 const cors = require('cors');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
-const apiKey = "55023baf198e42168aea94fd3a0cd49f"
+const apiKey = "f40a381c013644daa6fd08e12b08ee2b"
 
 const router = Router();
 router.use(

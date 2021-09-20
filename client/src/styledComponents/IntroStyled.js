@@ -10,6 +10,16 @@ const IntroStyled=styled.div`
     align-items: center;
     justify-content: center;
     height: 88vh;
+    .music{
+        height: auto;
+        width: auto;
+        margin-top: 0px;
+        margin-right: 900px;
+    }
+    .music-button{
+        background: #6f5b80;
+        border-radius:50%;
+    }
     .intro-text{
         font-size: 2rem;
         color: white;
