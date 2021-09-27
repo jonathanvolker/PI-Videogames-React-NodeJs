@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { getVideogameById } from '../actions/index.js'
 import VideogameStyled from "../styledComponents/VideogameStyled";
+import Nav from "./Nav"
 
 export default function Videogame() {
     const { id } = useParams();
@@ -15,7 +16,8 @@ export default function Videogame() {
     
 
   return (
- 
+    <>
+    <Nav/>
     <VideogameStyled className="videogame-container">
       <h1 className="videogame-name">{videogame.name}</h1>
       <div className="videogame-data">
@@ -36,7 +38,7 @@ export default function Videogame() {
          }
       </h4>
       </div>
-     <p className="videogame-description">{videogame.description ? videogame.description.replace(/<[^>]+>/g, '') : videogame.description}</p>
+     <p className="videogame-description"><div>Descripcion:</div> <br/> {videogame.description ? videogame.description.replace(/<[^>]+>/g, '') : videogame.description}</p>
      {//ReactHtmlParser(videogame.description) 
     }
     
@@ -45,5 +47,6 @@ export default function Videogame() {
               "https://images-na.ssl-images-amazon.com/images/I/71JeJBMiejL.jpg"
     } alt=""/>
    </VideogameStyled>
+   </>
   );
 }

@@ -8,10 +8,12 @@ import Intro from './components/Intro'
 import About from './components/About'
 import GameCreated from './components/GameCreated';
 
+
 function App() {
   return (
   <>
-    <Nav />
+   
+
     <Route exact path='/about' component={About} /> 
     <Route exact path="/home" component={Home} />
     <Route exact path="/videogames/:id" component={Videogame} />

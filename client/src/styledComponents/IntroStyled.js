@@ -1,7 +1,7 @@
 import styled from "styled-components";
 const IntroStyled=styled.div`
-    margin-top: 12vh;
-    //background-image: url("https://media2.giphy.com/media/9LZTcawH3mc8V2oUqk/giphy.gif?cid=ecf05e47h1xf64lde05sqx6nq3nutfaexexddlosgvycg4tq&rid=giphy.gif&ct=g");
+    //margin-top: 12vh;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-image: url("https://i.pinimg.com/originals/59/bf/96/59bf96fde108d05bbaa2f096de0934d5.gif");
     background-size: cover;
     display: flex;
@@ -9,7 +9,7 @@ const IntroStyled=styled.div`
     background-position: center;
     align-items: center;
     justify-content: center;
-    height: 88vh;
+    height: 100vh;
     .music{
         height: auto;
         width: auto;

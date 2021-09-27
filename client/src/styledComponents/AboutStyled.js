@@ -9,6 +9,8 @@ const IntroStyled=styled.div`
     justify-content: center;
     height: 98vh;
     color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 25px;
   
    
 `

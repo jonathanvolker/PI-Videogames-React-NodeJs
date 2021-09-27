@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGenreList } from "../actions";
-
+import Nav from "./Nav"
 import CreateGameStyled from "../styledComponents/CreateGameStyled";
 
 export default function CreateGame() {
@@ -66,7 +66,8 @@ export default function CreateGame() {
    
 
   return (
-  
+      <>
+      <Nav/>
    
     <CreateGameStyled>
       
@@ -134,13 +135,17 @@ export default function CreateGame() {
           <p className="selected-genres">{newGame.game_genres.join(' - ')}</p>
             <div className="checkbox-container">
               {genreList.map(genre => (
-                <div key={genre.id}>
+                <>
+                <div className="check" key={genre.id}>
                   <input type="checkbox" 
+                  className="checkbox"
                   onChange={handleChangeGenres} 
                   name={genre.name} 
                   value={genre.name} />
                   {genre.name}
+                  
                 </div>
+                </>
               ))}
             </div>
         </div>
@@ -156,5 +161,6 @@ export default function CreateGame() {
       </form>
         </>) : null}
     </CreateGameStyled>
+    </>
   );
 }

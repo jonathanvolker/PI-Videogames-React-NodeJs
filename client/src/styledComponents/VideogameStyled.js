@@ -1,6 +1,7 @@
 import styled from "styled-components";
 const VideogameStyled=styled.div`
-    margin-top: 15vh;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 12vh;
     color: white;
    // background-color: #8f6fab;
     background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(126,36,236,1) 41%, rgba(111,91,128,1) 100%);
@@ -21,8 +22,14 @@ const VideogameStyled=styled.div`
         border-radius: 1rem;
     }
     .videogame-description{
-        width: 80%;
+        display: flex;
+        flex-direction: column;
+        width: 60%;
         text-align: center;
+        background: #B27CF0;
+        border-radius:2px;
+        padding: 1rem;
+
     }
 
     .videogame-img{

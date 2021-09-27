@@ -9,6 +9,7 @@ const NavStyled=styled.div`
     width: 100%;
     a {
         font-weight: bold;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         color: white;
         text-decoration: none;
         
@@ -26,7 +27,7 @@ const NavStyled=styled.div`
         .logo {
             letter-spacing: 15px;
             font-size: 1.2em;
-            margin-right: 26rem;
+            margin-right: 60rem;
         }
         .navigation ul {
             margin: 0;

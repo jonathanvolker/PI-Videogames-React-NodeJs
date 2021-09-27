@@ -128,7 +128,10 @@ export function VideogameList() {
                         <option value="Database">Database</option> 
                     </select>
                 </div>
-                <div className="pagination">
+                <div className="genre-filter" >
+                <h1 className="orders">
+                        Alfabetico:
+                    </h1>
                     <nav
                         name="sort"
                         className="select-sort">

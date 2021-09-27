@@ -1,5 +1,6 @@
 import styled from "styled-components";
 const VideogameListStyled=styled.div`
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 .await{
     display: flex;
     flex-direction: column;
@@ -9,7 +10,6 @@ const VideogameListStyled=styled.div`
 }
 .spinner-container{
     display: flex ;
-    //justify-content:center;
     margin-top: 10px;
     height: 100%;
     width: 70%;
@@ -25,11 +25,11 @@ const VideogameListStyled=styled.div`
 .search-bar {
     display: flex;
     justify-content: center;
-    //align-items: center;
     background-image: url("https://64.media.tumblr.com/0aed23aeea0762ccda0e1cc2451ac19c/7825a676d6da44b5-a9/s1280x1920/e7cabee9361013cd4679ad65cda46b9fb2b58428.gifv");
-    height: 50vh;
+   height: 35vh;
     width: 100%;
     background-position: center;
+    margin-bottom: 1rem;
     .search-form {
         display: flex;
         margin-top: 40px;

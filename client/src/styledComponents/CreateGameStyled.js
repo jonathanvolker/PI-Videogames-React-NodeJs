@@ -1,8 +1,9 @@
 import styled from "styled-components";
 const CreateGameStyled=styled.div`
      background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(126,36,236,1) 41%, rgba(111,91,128,1) 100%);
-     margin-top: 18vh;
+     margin-top: 12vh;
      color: white;
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     
     h1{
         font-size: 2rem;
@@ -46,14 +47,28 @@ const CreateGameStyled=styled.div`
         font-size: 1.5rem;
     }
     .genres-container{
-      // max-width: 100%;
+      // width: 100%;
+
         .checkbox-container{
             display: flex;
             flex-direction: column;
             flex-wrap: wrap;
+            align-items: stretch;
+            justify-content:center;
             height: 25vh;
             max-width: 100%;
             
+            }
+            .checkbox{
+                background-position: 0 -42px; width: 24px; height: 24px;
+                &::checked{background-position: 0 -21px; width: 16px; height: 16px;}
+            }
+            .check{
+                display:flex;
+                flex-direction:column;
+                flex-wrap: nowrap;
+                align-items:center;
+
             }
         .selected-genres{
             border-radius: 0.5rem;
@@ -67,7 +82,11 @@ const CreateGameStyled=styled.div`
         }
     .submit-game{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
       
     }
     .form-submit{
@@ -75,7 +94,6 @@ const CreateGameStyled=styled.div`
         background-color: #6f5b80;
         padding: 1rem;
         margin-bottom: 1rem;
-        margin-left: 250px;
         margin-top: 1rem;
         text-align: center;
         height: 3rem;

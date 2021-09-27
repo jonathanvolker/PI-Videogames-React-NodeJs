@@ -18,6 +18,7 @@ router.use(
 
 //guardar datos desde api en nuestra base de datos
 
+
 router.get('/videogames', async (req, res) => {
     if(req.query.name){
         const { name } = req.query;

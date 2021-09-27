@@ -2,14 +2,16 @@ import React from 'react'
 import AboutStyled from '../styledComponents/AboutStyled'
 import useSound from 'use-sound';
 import ending from "../audios/ending.mp3"
+import Nav from "./Nav"
 
 export default function About() {
     const [play, {stop}] = useSound(ending,{ volume: 0.5 });
 
 
 
-    return(
-        
+    return( 
+        <>
+        <Nav/>
         <div onMouseEnter={() => play()} onMouseLeave={() => stop()}>
         <AboutStyled>
         <div clasName="about">
@@ -21,5 +23,6 @@ export default function About() {
    
     </AboutStyled>
         </div>
+        </>
     )
 }
