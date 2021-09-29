@@ -10,8 +10,8 @@ export function VideogameList() {
 
     const dispatch = useDispatch();
     const listGames = useSelector(state => state.games);
-    console.log("listGames",listGames);
-   useEffect(() => {
+   // console.log("listGames",listGames);
+    useEffect(() => {
        dispatch(fetchListGames());
     }, [dispatch]);
    
@@ -22,7 +22,6 @@ export function VideogameList() {
    //console.log("list genres",listGenres);
    
     //paginado de los juegos
-    const [state,setState]= useState(0)
     const [currentPage, setCurrentPage] = useState(0);
     const[filters, setFilters] = useState({
         search: "",
@@ -35,18 +34,17 @@ export function VideogameList() {
     const filteredGames = () => {
         // API array de objetos juegos... game_genres
         // DB array de objetos juegos... genres ... [name]
-        
         if (filters.search.length > 0) return listGames.filter(game => game.name.toLowerCase().includes(filters.search.toLowerCase())).slice(currentPage, currentPage + 10);
         if (filters.filter.length > 0) return listGames.filter(game => game.game_genres.split(', ').includes(filters.filter)).slice(currentPage, currentPage + 10);
         if (filters.sortOrigin === 'API') return listGames.filter(game => !(isNaN(game.id))).slice(currentPage, currentPage + 10);
         if (filters.sortOrigin === 'Database') return listGames.filter(game => isNaN(game.id)).slice(currentPage, currentPage + 10);
         if (filters.ratingSort === 'High to Low') return listGames.sort((a, b) => b.rating - a.rating).slice(currentPage, currentPage + 10);
         if (filters.ratingSort === 'Low to High') return listGames.sort((a, b) => a.rating - b.rating).slice(currentPage, currentPage + 10);
+        if (filters.sort === 'A-Z') return listGames.sort((a, b) => a.name.localeCompare(b.name)).slice(currentPage, currentPage + 9);
+        if (filters.sort === 'Z-A') return listGames.sort((a, b) => b.name.localeCompare(a.name)).slice(currentPage, currentPage + 9);  
         else return listGames.slice(currentPage, currentPage + 10)
     }
-    const filterZ=()=>{ listGames.sort(function (a, b) {if (a.name > b.name) {return -1;}if (a.name < b.name) {return 1;}return 0; }); setState(1)}
-    const filterA=()=>{listGames.sort(function (a, b) {if (a.name > b.name) {return 1;}if (a.name < b.name) {return -1;}return 0;}); setState(2)}
-    
+ 
  
     const handleChange = (e) => {
         setCurrentPage(0);
@@ -80,7 +78,7 @@ export function VideogameList() {
                 </div>
             </div>
             <div className="filters">
-                <div className="genre-filter">
+                <div className="orders-container">
                     <h1 className="orders">
                         Genero:
                     </h1>
@@ -98,7 +96,7 @@ export function VideogameList() {
                     }     
                     </select>
                 </div>
-                <div>
+                <div className="orders-container">
                     <h1 className="orders">
                         Rating:
                     </h1>
@@ -113,7 +111,7 @@ export function VideogameList() {
                         <option value="Low to High">Menor a mayor</option>
                     </select>
                 </div>
-                <div>
+                <div className="orders-container">
                     <h1 className="orders">
                         Origen:
                     </h1>
@@ -128,22 +126,31 @@ export function VideogameList() {
                         <option value="Database">Database</option> 
                     </select>
                 </div>
-                <div className="genre-filter" >
+                <div className="orders-container">
                 <h1 className="orders">
-                        Alfabetico:
-                    </h1>
-                    <nav
-                        name="sort"
-                        className="select-sort">
-                        <button key="a" value="A-Z" className="order-button" onClick={filterA} >A/Z </button>
-                        <button key="b" value="Z-A" className="order-button" onClick={filterZ} >Z/A </button>
-                    </nav>
+                    Alfabetico:
+                </h1>
+                <select
+                    name="sort"
+                    value={filters.sort}
+                    onChange={handleChange}
+                    className="select-sort"
+                >
+                    <option value="">
+                    </option>
+                    <option value="A-Z">
+                        A-Z
+                    </option>
+                    <option value="Z-A">
+                        Z-A
+                    </option>
+                </select>
                 </div>
                 </div>
                 {listGames.length === 0 ?<><div className="await">Aguarde, estamos cargando los resultados...</div> <div className="spinner-container"> <img className="spinner" src="https://media4.giphy.com/media/26tn84fF0eL3c898c/giphy.gif?cid=ecf05e4780ytrcq9le37ycbd1mqeo8luco0upmqo7q228mmq&rid=giphy.gif&ct=g" alt="loading"></img></div></> : 
                 filteredGames().length === 0 ? <h1 className="games-not-found">No se encontraron juegos</h1> :  
                 <div className="list-container">
-                    {(state ==0 || state ==1 || state ==2) ? (filteredGames().map(game =>
+                    {filteredGames().map(game =>
                     <div className="list-item" key={game.id}>
                             <div className="list-item-name">
                                 <h1>{game.name}</h1>
@@ -164,7 +171,7 @@ export function VideogameList() {
                             </Link>
                            </div>
                     </div>
-                )):null}
+                )}
             </div >
         }
             <div className="pagination">

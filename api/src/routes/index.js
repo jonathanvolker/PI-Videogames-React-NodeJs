@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 const cors = require('cors');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
-const apiKey = "f40a381c013644daa6fd08e12b08ee2b"
+const apiKey = "b18404e1f7884796a0e28eca1e129003"
 
 const router = Router();
 router.use(
@@ -38,63 +38,60 @@ router.get('/videogames', async (req, res) => {
             res.json(videogamesApi);
         }
         
-    }else{
-    const videogamesdb = await Videogame.findAll({include: Genre});
+    }
+    else{
+
+        const videogamesdb = await Videogame.findAll({include: Genre});
         let videogamesMapped = videogamesdb.map(videogame => {
-        let genres = videogame.genres.map(genre => genre.name)
-        const videogameData = {
-            name: videogame.name,
-            id: videogame.id,
-            description: videogame.description,
-            game_genres: genres.join(', '),
-            plataforms: videogame.plataforms,
-            release_date: videogame.release_date,
-            rating: videogame.rating,
-        }
-        return videogameData;
-    })
-
-
-
-
-    const response = await fetch(`https://api.rawg.io/api/games?key=${apiKey}`)
-    const data = await response.json()
-    const responseNext = await fetch(data.next)
-    const dataNext = await responseNext.json()
-    const responseNext2 = await fetch(dataNext.next)
-    const dataNext2 = await responseNext2.json()
-    const responseNext3 = await fetch(dataNext2.next)
-    const dataNext3 = await responseNext3.json()
-    const responseNext4 = await fetch(dataNext3.next)
-    const dataNext4 = await responseNext4.json()
-
-    const games = [...data.results, ...dataNext.results, ...dataNext2.results, ...dataNext3.results, ...dataNext4.results].map(async game => {
-        const description = await fetch(`https://api.rawg.io/api/games/${game.id}?key=${apiKey}`)
-        const dataDescription = await description.json()
-        const platforms = [];
-        dataDescription.parent_platforms.forEach(platform => {
-            platforms.push(platform.platform.name)
+            let genres = videogame.genres.map(genre => genre.name)
+            const videogameData = {
+                name: videogame.name,
+                    id: videogame.id,
+                    description: videogame.description,
+                    game_genres: genres.join(', '),
+                    plataforms: videogame.plataforms,
+                    release_date: videogame.release_date,
+                    rating: videogame.rating,
+                }
+            return videogameData;
         })
-        
+        const response = await fetch(`https://api.rawg.io/api/games?key=${apiKey}`)
+        const data = await response.json()
+        const responseNext = await fetch(data.next)
+        const dataNext = await responseNext.json()
+        const responseNext2 = await fetch(dataNext.next)
+        const dataNext2 = await responseNext2.json()
+        const responseNext3 = await fetch(dataNext2.next)
+        const dataNext3 = await responseNext3.json()
+        const responseNext4 = await fetch(dataNext3.next)
+        const dataNext4 = await responseNext4.json()
 
-        const videogame = {
-            name: game.name,
-            id: game.id,
-            description: dataDescription.description,
-            rating: game.rating_top,
-            plataforms: platforms.join(', '),
-            release_date: game.released,
-            game_genres: game.genres.map(genre => genre.name).join(', '),
-            background_image: game.background_image,
+        const games = [...data.results, ...dataNext.results, ...dataNext2.results, ...dataNext3.results, ...dataNext4.results].map(async game => {
+            const description = await fetch(`https://api.rawg.io/api/games/${game.id}?key=${apiKey}`)
+            const dataDescription = await description.json()
+            const platforms = [];
+            dataDescription.parent_platforms.forEach(platform => {
+                platforms.push(platform.platform.name)
+            })
+            
+            const videogame = {
+                name: game.name,
+                id: game.id,
+                description: dataDescription.description,
+                rating: game.rating_top,
+                plataforms: platforms.join(', '),
+                release_date: game.released,
+                game_genres: game.genres.map(genre => genre.name).join(', '),
+                background_image: game.background_image,
+            }
+            return videogame
+        })
+        await Promise.all(games)
+        .then(videogames => {
+            res.json(videogames.concat(videogamesMapped))
         }
-        return videogame
-    })
-    await Promise.all(games)
-    .then(videogames => {
-        res.json(videogames.concat(videogamesMapped))
-    }
-    )
-    }
+        )
+        }
 }
 )
 
@@ -124,13 +121,34 @@ router.post('/videogames', async (req, res) => {
             name: genre
         }
     })
-    await videogame.setGenres(genero)
+      .then(data => {
+          videogame.setGenres(data); 
+          res.json({"data":data, "message":"juego creado"})
+        })
     })
     }
-    res.json(videogame)
+    
 })
 
-    
+ router.get('/videogame:name', async (req, res) => {
+    const { name} = req.params;
+    if(name){
+        try{
+            const videogame = await Videogame.findOne({
+                where: {
+                     name
+                },
+                include: Genre
+            })
+            res.json(videogame)
+        }
+        catch(error){
+            res.json({error: 'No se encontro el videojuego'})
+        }
+    }
+
+
+ })   
 
 router.get('/videogames/:id', async (req, res) => {
     const { id } = req.params;

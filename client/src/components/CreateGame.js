@@ -1,7 +1,9 @@
 import React, {useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGenreList } from "../actions";
+import axios from "axios"
 import Nav from "./Nav"
+
 import CreateGameStyled from "../styledComponents/CreateGameStyled";
 
 export default function CreateGame() {
@@ -11,7 +13,7 @@ export default function CreateGame() {
     useEffect(() => {
         dispatch(fetchGenreList());
     }, [dispatch]);
-    const [gameCreated,setGameCreated] =useState(false)
+   
     const [newGame, setNewGame] = useState({
         name: "",
         description: "",
@@ -44,21 +46,17 @@ export default function CreateGame() {
     };
    
     async function handleSubmit(e) {
-       const response = await fetch("http://localhost:3001/videogames", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-            body: JSON.stringify(newGame),
-        });
-        const data = await response.json();
+      e.preventDefault();
+       const response =  axios.post("http://localhost:3001/videogames", newGame).
+        then(response => {
+          console.log(response.data.data)
+                if(response.data.message === "juego creado"){
+                    window.location.href = `/gamecreated` 
+
+                }})
+        
        
-        return window.location.href = 'http://localhost:3000/gamecreated'
        
-        if(data.error){
-          alert(data.error)
-        }   
 
     };
 
@@ -70,8 +68,7 @@ export default function CreateGame() {
       <Nav/>
    
     <CreateGameStyled>
-      
-       {!gameCreated ? (
+     
          <>
        <h1>Bienvenido al creador de juegos!</h1>
        <p> En esta seccion usted podra agregar un nuevo juego al listado con todas sus caracteristicas </p>
@@ -154,12 +151,12 @@ export default function CreateGame() {
           type="submit"
           value="Agregar juego" 
           className="form-submit"
-          onClick={newGame.name && newGame.description && newGame.plataforms && newGame.rating && handleSubmit} 
-          disabled={!newGame.name || !newGame.description || !newGame.plataforms}
+          onClick={newGame.name && newGame.description && newGame.plataforms && newGame.rating && newGame.game_genres[0] && handleSubmit} 
+          disabled={!newGame.name || !newGame.description || !newGame.plataforms || !newGame.rating || !newGame.game_genres[0]}
           />  
           </div>
       </form>
-        </>) : null}
+        </>
     </CreateGameStyled>
     </>
   );

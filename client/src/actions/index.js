@@ -21,8 +21,6 @@ export const getVideogameById = (id) => {
 
 
 
-
-
 export const fetchListGames = () => {
     return (dispatch) => {
         dispatch(fetchListGamesRequest());
@@ -37,27 +35,26 @@ export const fetchListGames = () => {
             })
     }
 }
-
 export const fetchListGamesRequest = () => {
     return {    
         type: 'FETCH_LIST_GAMES_REQUEST',
     }
 }
-
-
 export const fetchListGamesSuccess = (games) => {
     return {
         type: 'LIST_GAMES_SUCCESS',
         payload: games     
     }
 }
-
 export const fetchListGamesFailure = (error) => {
     return {
         type: 'LIST_GAMES_FAILURE',
         payload: error
     }
 }
+
+
+
 
 export const fetchGenreList = () => {
     return (dispatch) => {
@@ -73,7 +70,6 @@ export const fetchGenreList = () => {
             })
     }
 }
-
 export const fetchGenreListRequest = () => {
     return {    
         type: 'FETCH_GENRE_LIST_REQUEST',

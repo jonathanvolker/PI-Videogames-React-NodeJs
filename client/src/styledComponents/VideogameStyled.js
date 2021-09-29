@@ -3,13 +3,22 @@ const VideogameStyled=styled.div`
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-top: 12vh;
     color: white;
-   // background-color: #8f6fab;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(126,36,236,1) 41%, rgba(111,91,128,1) 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(126,36,236,1) 41%, rgba(111,91,128,1) 100%);
+        width: 70%;
+        border-radius:6px;
+        box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+
+    }
     .videogame-data{
         display: flex;
         justify-content: space-evenly;
@@ -24,16 +33,17 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     .videogame-description{
         display: flex;
         flex-direction: column;
-        width: 60%;
+        width: 80%;
         text-align: center;
-        background: #B27CF0;
         border-radius:2px;
         padding: 1rem;
 
     }
 
     .videogame-img{
-        width: 100%;
+
+        width: 67.5rem;
+        border-radius: 4px;
         img{
             width: 100%
         }

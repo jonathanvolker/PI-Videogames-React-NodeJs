@@ -15,10 +15,13 @@ export default function Videogame() {
     }, [dispatch]);
     
 
+    window.scroll(0, 0)
+
   return (
     <>
     <Nav/>
     <VideogameStyled className="videogame-container">
+     <div className="container">
       <h1 className="videogame-name">{videogame.name}</h1>
       <div className="videogame-data">
       <h4>Rating: {videogame.rating}</h4>
@@ -29,7 +32,7 @@ export default function Videogame() {
       <br/>
       <br/>
       <br/>
-      <h4>Lanzamiento: {videogame.release_date} </h4>
+      <h4>Lanzamiento: {  videogame.release_date ? (videogame.release_date < 10 ? videogame.release_date.split('-').reverse().join('/') : videogame.release_date.slice(0,10).split('-').reverse().join('/')) : null } </h4>
       <br/>
       <br/>
       <br/>
@@ -46,6 +49,7 @@ export default function Videogame() {
               videogame.background_image :
               "https://images-na.ssl-images-amazon.com/images/I/71JeJBMiejL.jpg"
     } alt=""/>
+    </div>
    </VideogameStyled>
    </>
   );

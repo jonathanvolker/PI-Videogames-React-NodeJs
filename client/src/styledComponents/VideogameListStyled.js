@@ -13,11 +13,12 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-top: 10px;
     height: 100%;
     width: 70%;
+    margin-left: 5rem;
 .spinner{  
        display: inline-block;
         width: 1000px;
         height: 350px;
-        margin-left:290px ;
+        margin-left:350px ;
         border-radius:6px;
     }
      
@@ -26,7 +27,7 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     display: flex;
     justify-content: center;
     background-image: url("https://64.media.tumblr.com/0aed23aeea0762ccda0e1cc2451ac19c/7825a676d6da44b5-a9/s1280x1920/e7cabee9361013cd4679ad65cda46b9fb2b58428.gifv");
-   height: 35vh;
+    height: 35vh;
     width: 100%;
     background-position: center;
     margin-bottom: 1rem;
@@ -65,16 +66,24 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     align-items: center;
     flex-wrap: wrap;
        select{
-        border: 4px solid $primary;
+        background: #8740c4;
+        padding: 2px;
+        border: 1px solid #6f5b80;
         border-radius: 0.5rem;
         height: 1.5rem;
         font-size: 1rem; 
-       }
-       .orders{
+        color: white;
+    }
+       .orders-container{
         font-size: 1rem;
-       margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+       margin-bottom: 1rem;
 
        }
+       
 }
 
 
@@ -93,12 +102,11 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             margin: 1rem;
             width: 20rem;
             height: 25rem;
-           // background-color: #7e24ec;
             background-color: #8740c4;//#32bde8 ;
             border-radius: 0.5rem;
             text-align: center;
-             padding-bottom: 2rem;
-             box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            padding-bottom: 2rem;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
                 h1{
                     font-size: 1.4rem;
                 }

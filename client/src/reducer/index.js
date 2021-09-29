@@ -10,6 +10,11 @@ const initialState = {
 // 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'FETCH_LIST_GAMES_REQUEST':
+      return {
+        ...state,
+        loading: false,
+      };
     case 'LIST_GAMES_SUCCESS':
       return {
         ...state,
@@ -23,11 +28,6 @@ const rootReducer = (state = initialState, action) => {
         loading: false,
         games: [],
         error: action.payload,
-      };
-    case 'FETCH_LIST_GAMES_REQUEST':
-      return {
-        ...state,
-        loading: false,
       };
     case 'FETCH_GENRE_LIST_REQUEST':
       return {
